@@ -1,0 +1,39 @@
+How to get the bosonisation mapping
+
+1. Determine the best gauge
+____________Step 1: Run python3 b2f_IQH.py 
+(Note: if it's Laughlin state, the file name is b2f)
+Input the number of electrons for the system required
+This will generate the coefficients of all bosonic monomials in the fermionic basis, for all possible gauges. Each Lz sector is stored in a subdirectory "Lz_{Lz}"
+
+
+____________Step 2: Run python3 get_2qh_state_2.py
+Depending on the version of the code, the programme may or may not prompt you to input N_e.
+If it doesn't, you have to edit the variable Ne in the source code.
+
+This program will find the best gauge choice that maximize the overlap between the bosonized state and the model state.
+
+Also check if get_overlap() is executed under if __name__=="__main__".
+This function will give you the overlap between the bosonised state and the model state at various quasihole separation. Depending on the system size, this make take a long time, so you can command out this function if you only want to find the best gauge.
+
+2. Construct the bosonised state
+____________Option 1: Run python3 bosonise.py
+This routine takes in a boson state (stored in a file) and return the equivalent IQH state.
+
+
+____________Option 2: Import the bosonisation.b2f() function
+You may wish to incorporate this routine to your own Python code, in which case you can import it from the bosonisation library. The source code of this library is available in "/home/trung/_qhe-library" on the workstations.
+
+Please refer to the online documentation for more details 
+
+
+
+
+
+Notes:
+
+1. b2f_IQH.py will generate a large database of all possible transformations using all possible gauges. Please ensure there is sufficient storage space. (Usually it is only significant for 34 electrons or more.)
+
+2. You may also delete all the folders after finishing and generate them again next time if needed; this part of the routine is quite fast. 
+
+3. For generality, every routine will ask you to input N_e (number of electrons) every time.
